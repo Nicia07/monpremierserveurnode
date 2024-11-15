@@ -2,8 +2,23 @@
 // require() permet d'importer le package, ici le package,
 //Ici le package importé est http
 //const http = require('http'); => code selon ES5 (avant 2015)
-import {createServer} from "http";// codage selon ES6 (2015)
+//import {createServer} from "http";// codage selon ES6 (2015)
 
+const http = require('http');
+const app = require('./app');
+
+const numPort =3002;
+
+const server = http.createServer(app);
+
+const date = new Date();
+
+app.set ("port",numPort)
+
+server .listen(3002, () => {
+    console.log(date.toLocaleDateString()," ", date.toLocaleTimeString());
+    console.log("Le serveur est activé au port :" ,numPort);
+});
 
 
 //Déclaration du serveur en utilisant http
@@ -11,10 +26,10 @@ import {createServer} from "http";// codage selon ES6 (2015)
 // On crée le serveur selon la recommandation ES6
 //const server1 = createServer("./app");
 
-const server = http.createServer((req,res) => {
+/*const server = http.createServer((req,res) => {
     res.end("Bonjour, je suis reveur.");
 
-// Le serveur est disponible sur le port 3000
+//Le serveur est disponible sur le port 3000
  server.listen(3000);
 });
 
